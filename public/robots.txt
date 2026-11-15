@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO (before launch): update the domain below once confirmed
+Sitemap: https://www.bunyaadholdings.com/sitemap.xml
