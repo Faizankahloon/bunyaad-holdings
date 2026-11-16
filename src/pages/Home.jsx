@@ -10,7 +10,7 @@ import {
   CheckCircle2,
   Compass,
 } from "lucide-react";
-import { WHATSAPP, PHONE, projects } from "../data/site.js";
+import { WHATSAPP, projects } from "../data/site.js";
 import SectionHead from "../components/SectionHead.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
 import ContactCTA from "../components/ContactCTA.jsx";
@@ -251,19 +251,7 @@ export default function Home() {
           </a>
         </div>
       </section>
-      <ContactCTA
-        title={
-          <>
-            Let’s Find the Right
-            <br />
-            <em>Property for You.</em>
-          </>
-        }
-        copy="Tell us your preferred location, property type and budget. Our team will help you explore suitable options."
-        primaryLabel="Call Now"
-        primaryHref={`tel:${PHONE}`}
-        hidePhone
-      />
+      <ContactCTA />
     </>
   );
 }

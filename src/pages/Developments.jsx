@@ -50,19 +50,7 @@ export default function Developments() {
         </div>
       </section>
 
-      <ContactCTA
-        eyebrow="OUR DEVELOPMENTS"
-        title={
-          <>
-            Learn About Our
-            <br />
-            <em>Development Activities.</em>
-          </>
-        }
-        copy="Contact our team to learn about our development activities. Individual project details and updates will be added as they become available."
-        primaryLabel="Enquire About Our Developments"
-        primaryHref="#/contact"
-      />
+      <ContactCTA />
     </>
   );
 }

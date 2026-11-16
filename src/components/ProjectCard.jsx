@@ -20,14 +20,16 @@ export default function ProjectCard({ p, i = 0 }) {
           <span>{p.type}</span>
           <span>{p.developer}</span>
         </div>
-        <h3>{p.name}</h3>
+        <div className="project-title-row">
+          <h3>{p.name}</h3>
+          <a className="btn btn-outline-dark card-btn" href={"#/" + p.slug}>
+            View Project <ArrowRight size={15} />
+          </a>
+        </div>
         <p className="project-location">
           <MapPin size={13} /> {p.location}
         </p>
         <p>{p.description}</p>
-        <a className="btn btn-outline-dark card-btn" href={"#/" + p.slug}>
-          View Project <ArrowRight size={16} />
-        </a>
       </div>
     </article>
   );

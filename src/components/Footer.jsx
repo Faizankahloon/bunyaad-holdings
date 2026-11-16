@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { PHONE, WHATSAPP } from "../data/site.js";
@@ -14,26 +15,31 @@ export default function Footer() {
               <small>HOLDINGS</small>
             </span>
           </a>
+
+          <h4 className="company-description-heading">
+            Company Description
+          </h4>
+
           <p className="footer-copy">
             Bunyaad Holdings connects buyers with residential and commercial
             property opportunities through property sales, project marketing and
             our own development activities.
           </p>
         </div>
+
         <div>
-          <h4>Explore</h4>
+          <h4>Links</h4>
           <a href="#/">Home</a>
           <a href="#/about">About Us</a>
           <a href="#/projects">Projects</a>
           <a href="#/developments">Our Developments</a>
           <a href="#/contact">Contact Us</a>
-          <a href="#/privacy-notice">Privacy Notice</a>
-          <a href="#/website-terms">Website Terms</a>
         </div>
+
         <div>
-          <h4>Get in touch</h4>
+          <h4>Contact</h4>
           <a href={`tel:${PHONE}`}>
-            <Phone size={15} /> 0321 5667784
+            <Phone size={15} /> 03215667784
           </a>
           <span>
             <MapPin size={15} /> 630 Block R, Model Town, Lahore
@@ -43,11 +49,16 @@ export default function Footer() {
           </a>
         </div>
       </div>
+
       <div className="container footer-bottom">
         <span>
           © {new Date().getFullYear()} Bunyaad Holdings. All rights reserved.
         </span>
-        <span>Property opportunities. Personal guidance.</span>
+
+        <nav className="footer-legal-links" aria-label="Legal links">
+          <a href="#/privacy-notice">Privacy Notice</a>
+          <a href="#/website-terms">Website Terms</a>
+        </nav>
       </div>
     </footer>
   );

@@ -1,24 +1,10 @@
 import React from "react";
-import { ArrowUpRight, Phone, MessageCircle, Clock, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, MessageCircle, Clock, MapPin, ShieldCheck } from "lucide-react";
 import { PHONE, WHATSAPP } from "../data/site.js";
 
-// High-impact call-to-action band that navigates visitors to the contact page.
-export default function ContactCTA({
-  eyebrow = "LET’S TAKE THE NEXT STEP",
-  title = (
-    <>
-      Tell Us What You’re
-      <br />
-      <em>Looking For.</em>
-    </>
-  ),
-  copy = "Share your preferred location, property type and budget on the contact page — our team will help you explore suitable options.",
-  trust = ["Response within 24 hours", "Guidance from a real team", "No obligation enquiry"],
-  primaryLabel = "Go to Contact Page",
-  primaryHref = "#/contact",
-  phoneLabel = "0321 5667784",
-  hidePhone = false,
-}) {
+// High-impact call-to-action band, shared by every page so the CTA is
+// identical site-wide (per marketing-website design).
+export default function ContactCTA() {
   return (
     <section className="contact-cta">
       <span className="cta-watermark" aria-hidden="true">
@@ -32,25 +18,26 @@ export default function ContactCTA({
         <div className="cta-head">
           <span className="cta-eyebrow">
             <span className="cta-eyebrow-line" />
-            {eyebrow}
+            LET’S TAKE THE NEXT STEP
             <span className="cta-eyebrow-line" />
           </span>
-          <h2 className="cta-title">{title}</h2>
-          <p className="cta-copy">{copy}</p>
+          <h2 className="cta-title">
+            Let’s Find the Right
+            <br />
+            <em>Property for You.</em>
+          </h2>
+          <p className="cta-copy">
+            Tell us your preferred location, property type and budget. Our team
+            will help you explore suitable options.
+          </p>
 
-          <div className="cta-actions">
-            <a className="cta-btn cta-btn-primary" href={primaryHref}>
-              <span className="cta-btn-face">{primaryLabel}</span>
+          <div className="cta-actions cta-actions-pair">
+            <a className="cta-btn cta-btn-primary" href={`tel:${PHONE}`}>
+              <span className="cta-btn-face">Call Now</span>
               <span className="cta-btn-icon">
                 <ArrowUpRight size={19} />
               </span>
             </a>
-            {!hidePhone && (
-              <a className="cta-btn cta-btn-ghost" href={`tel:${PHONE}`}>
-                <Phone size={16} />
-                <span>{phoneLabel}</span>
-              </a>
-            )}
             <a
               className="cta-btn cta-btn-ghost"
               href={WHATSAPP}
@@ -63,9 +50,17 @@ export default function ContactCTA({
           </div>
 
           <ul className="cta-trust">
-            {trust.map((t, i) => (
+            {[
+              "Response within 24 hours",
+              "Guidance from a real team",
+              "No obligation enquiry",
+            ].map((t, i) => (
               <li key={t}>
-                {[<Clock key="c" size={13} />, <ShieldCheck key="s" size={13} />, <MapPin key="m" size={13} />][i % 3]}
+                {
+                  [<Clock key="c" size={13} />, <ShieldCheck key="s" size={13} />, <MapPin key="m" size={13} />][
+                    i % 3
+                  ]
+                }
                 {t}
               </li>
             ))}
