@@ -17,6 +17,7 @@ import PageHero from "../components/PageHero.jsx";
 import SectionHead from "../components/SectionHead.jsx";
 import ContactCTA from "../components/ContactCTA.jsx";
 import ContactForm from "../components/ContactForm.jsx";
+import CountUp from "../components/CountUp.jsx";
 import NotFound from "../components/NotFound.jsx";
 
 /* Amenities slider — one amenity at a time (arrows, dots, swipe) */
@@ -38,29 +39,37 @@ function AmenitySlider({ groups, name, image }) {
           touch.current = null;
         }}
       >
-        <div className="amenity-slide" key={i}>
-          <div className="amenity-slide-media">
-            <img src={groups[i].image || image} alt={groups[i].title} />
-            <span className="amenity-index">
-              {String(i + 1).padStart(2, "0")}
-            </span>
+        {groups.map((g, j) => (
+          <div
+            key={g.title}
+            className={
+              "amenity-slide" + (j === i ? " current" : j < i ? " prev" : " next")
+            }
+            aria-hidden={j !== i}
+          >
+            <div className="amenity-slide-media">
+              <img src={g.image || image} alt={g.title} />
+              <span className="amenity-index">
+                {String(j + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="amenity-slide-copy">
+              <span className="eyebrow">{name.toUpperCase()} · AMENITY</span>
+              <h3>{g.title}</h3>
+              <p className="group-intro">{g.intro}</p>
+              <ul>
+                {g.items.map(([lead, text], k) => (
+                  <li key={k}>
+                    <CheckCircle2 size={16} />
+                    <span>
+                      <b>{lead}</b> {text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="amenity-slide-copy">
-            <span className="eyebrow">{name.toUpperCase()} · AMENITY</span>
-            <h3>{groups[i].title}</h3>
-            <p className="group-intro">{groups[i].intro}</p>
-            <ul>
-              {groups[i].items.map(([lead, text], j) => (
-                <li key={j}>
-                  <CheckCircle2 size={16} />
-                  <span>
-                    <b>{lead}</b> {text}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="amenity-nav">
         <button onClick={() => go(-1)} aria-label="Previous amenity">
@@ -197,20 +206,6 @@ export default function ProjectPage({ slug }) {
         </div>
       )}
 
-      {/* Project scale stats (Bahria Sky 2) */}
-      {d.stats && (
-        <section className="stats-strip" aria-label={`${p.name} at a glance`}>
-          <div className="container stats-grid">
-            {d.stats.map((s) => (
-              <div className="stat-block" key={s.label}>
-                <b>{s.value}</b>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* Introduction — per project spec */}
       <section className={`section-pad section-tint section-rule${slug === "curve" ? " curve-intro-section" : slug === "sky-tree-tower" ? " sky-tree-intro-section" : ""}`}>
         <div className="container project-detail-grid">
@@ -246,6 +241,22 @@ export default function ProjectPage({ slug }) {
           </div>
         </div>
       </section>
+
+      {/* Project scale stats (Bahria Sky 2) */}
+      {d.stats && (
+        <section className="stats-strip" aria-label={`${p.name} at a glance`}>
+          <div className="container stats-grid stats-grid--five">
+            {d.stats.map((s) => (
+              <div className="stat-block" key={s.label}>
+                <b>
+                  <CountUp value={s.value} />
+                </b>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Booking amounts (Royal Atrium Mall) */}
       {d.pricing && (
@@ -404,7 +415,7 @@ export default function ProjectPage({ slug }) {
 
       {/* Key features (Royal Atrium) */}
       {d.keyFeatures && (
-        <section className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : ""}`}>
+        <section className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : ""}${slug === "royal-atrium-mall" ? " royal-features-section" : ""}`}>
           <div className="container">
             <SectionHead
               rail
@@ -567,7 +578,7 @@ export default function ProjectPage({ slug }) {
 
       {/* Image features */}
       {d.imageFeatures && (
-        <section className="section-pad section-rule project-look-section">
+        <section className={`section-pad section-rule project-look-section${slug === "royal-atrium-mall" ? " royal-look-section" : ""}`}>
           <div className="container">
             <SectionHead
               rail
@@ -715,7 +726,7 @@ export default function ProjectPage({ slug }) {
 
       {/* Location block */}
       {d.locationBlock && (
-        <section className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : slug === "sky-tree-tower" ? " sky-tree-location-section" : ""}`}>
+        <section className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : slug === "sky-tree-tower" ? " sky-tree-location-section" : ""}${slug === "royal-atrium-mall" ? " royal-location-section" : ""}`}>
           <div className="container">
             <SectionHead
               center
@@ -728,11 +739,18 @@ export default function ProjectPage({ slug }) {
             )}
             {d.locationBlock.image && (
               <div className="location-map-frame">
-                <img
-                  src={d.locationBlock.image}
-                  alt={`${p.name} neighbourhood map`}
-                  loading="lazy"
-                />
+                <a
+                  href={d.locationBlock.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${p.name} location in Google Maps`}
+                >
+                  <img
+                    src={d.locationBlock.image}
+                    alt={`${p.name} neighbourhood map`}
+                    loading="lazy"
+                  />
+                </a>
               </div>
             )}
             {d.locationBlock.distances && (

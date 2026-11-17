@@ -597,6 +597,10 @@ p {
   font-size: 12px;
   margin-top: 24px;
 }
+/* Description sits tight under its heading */
+.footer .company-description-heading + .footer-copy {
+  margin-top: 6px;
+}
 .footer h4 {
   font-size: 13px;
   color: #d0b47a;
@@ -1381,7 +1385,7 @@ p {
 
 /* ---- Amenities slider: one amenity at a time (HF-style) ---- */
 .amenity-slider{margin-top:6px}
-.amenity-slide{display:grid;grid-template-columns:1.05fr 1fr;background:#fff;border:1px solid #e6e1d5;animation:amenityIn .45s ease}
+.amenity-slide{display:grid;grid-template-columns:1.05fr 1fr;background:#fff;border:1px solid #e6e1d5}
 @keyframes amenityIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
 .amenity-slide-media{position:relative;min-height:420px}
 .amenity-slide-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -2052,7 +2056,7 @@ h2 em,.why-copy h2 em,.section-head h2 em,.cta-title em{color:#b9985a !important
   }
   .dropdown a:hover{background:rgba(208,180,122,.14) !important}
   .dropdown a img{
-    grid-column:1;grid-row:1 / span 2;width:52px;height:52px;object-fit:cover;border-radius:9px;
+    grid-column:1;grid-row:1 / span 2;width:52px;height:52px;object-fit:cover;border-radius:0;
     border:1px solid rgba(255,255,255,.15);transition:transform .3s;
   }
   .drop-name{grid-column:2;grid-row:1;align-self:center}
@@ -2096,6 +2100,13 @@ h2 em,.why-copy h2 em,.section-head h2 em,.cta-title em{color:#b9985a !important
   @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
   .hero-side-label{animation:fadeIn 1s .9s both}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+  /* — Project pages: same staggered entrance on the page hero — */
+  .page-hero .container > *{animation:heroRise .8s cubic-bezier(.22,.8,.32,1) both}
+  .page-hero .container > *:nth-child(1){animation-delay:.15s}
+  .page-hero .container > *:nth-child(2){animation-delay:.28s}
+  .page-hero .container > *:nth-child(3){animation-delay:.41s}
+  .page-hero .container > *:nth-child(4){animation-delay:.54s}
 
   /* — 2. Scroll reveals (elements get .rv from observer) — */
   .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,.8,.32,1),transform .8s cubic-bezier(.22,.8,.32,1);transition-delay:var(--rv-d,0s)}
@@ -2250,7 +2261,7 @@ h2 em,.why-copy h2 em,.section-head h2 em,.cta-title em{color:#b9985a !important
 .stat-block b{
   font:800 clamp(24px,2.6vw,34px)/1 Manrope;color:var(--gold);letter-spacing:-.02em;
 }
-.stat-block span{
+.stat-block > span{
   font:600 10.5px Inter;letter-spacing:.16em;text-transform:uppercase;color:#8a8f96;
 }
 @media(max-width:900px){
@@ -2745,19 +2756,19 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#c96b5d !i
   content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;background:var(--gold);
 }
 
-/* Stats strip: all five in one row, compact */
-.stats-grid{grid-template-columns:repeat(5,1fr) !important}
+/* Stats strip: five stats in one row (Bahria Sky 2 has five blocks) */
+.stats-grid--five{grid-template-columns:repeat(5,1fr) !important}
 .stat-block{padding:24px 16px;text-align:center;align-items:center}
-@media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr) !important}}
-@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr) !important}}
-@media(max-width:420px){.stats-grid{grid-template-columns:1fr !important}}
+@media(max-width:900px){.stats-grid--five{grid-template-columns:repeat(3,1fr) !important}}
+@media(max-width:600px){.stats-grid--five{grid-template-columns:repeat(2,1fr) !important}}
+@media(max-width:420px){.stats-grid--five{grid-template-columns:1fr !important}}
 
 /* Stats strip: gold band with navy text */
 .stats-strip{background:var(--gold);border-bottom:none}
 .stats-grid{border-left:1px solid rgba(18,38,58,.18)}
 .stat-block{border-right:1px solid rgba(18,38,58,.18)}
 .stat-block b{color:var(--navy)}
-.stat-block span{color:rgba(18,38,58,.75)}
+.stat-block > span{color:rgba(18,38,58,.75)}
 .stat-block:hover{background:rgba(18,38,58,.06)}
 
 /* Sky Medical Center: secondary image smaller, aligned right below the first */
@@ -2860,6 +2871,416 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#c96b5d !i
 .sky-tree-gallery-section .dev-groups-tabs button.active{background:#B9985A;color:#12263A;border-color:#B9985A}
 .sky-tree-gallery-section .dev-groups-row img{border-color:#B9985A}
 .sky-tree-enquiry-section{background:#FFFFFF !important;border-top-color:#B9985A !important}
-.company-description-heading {
+.footer h4.company-description-heading {
   margin-top: 24px;
+}
+/* ═══════════════════════════════════════════════════════════
+   ROYAL ATRIUM MALL — alternate the three consecutive navy
+   bands (Key Features · Inside the Project · Location) so each
+   reads as its own section: navy → ivory → navy
+   ═══════════════════════════════════════════════════════════ */
+.royal-features-section{
+  border-top:1px solid rgba(208,180,122,.45) !important;
+}
+.project-look-section.royal-look-section{
+  background:#f7f5f0 !important;
+  color:var(--ink);
+  border-top:1px solid rgba(185,152,90,.45);
+  border-bottom:1px solid rgba(185,152,90,.45);
+}
+.project-look-section.royal-look-section:before{content:none}
+.project-look-section.royal-look-section .section-head{border-left-color:var(--gold)}
+.project-look-section.royal-look-section .section-head h2{color:var(--navy) !important}
+.project-look-section.royal-look-section .section-head h2 em{color:var(--gold) !important}
+.project-look-section.royal-look-section .section-head p{color:#4a545d}
+/* NOTE: no eyebrow override here — the rail eyebrow is a gold chip with navy text */
+.project-look-section.royal-look-section .feature-row h3{color:var(--navy) !important}
+.project-look-section.royal-look-section .feature-row > div:last-child h3{color:var(--navy) !important}
+.project-look-section.royal-look-section .feature-row p{color:#4a545d}
+.project-look-section.royal-look-section .feature-row .eyebrow{color:var(--gold) !important}
+.project-look-section.royal-look-section .feature-row > div:last-child .eyebrow{color:var(--gold) !important}
+.project-look-section.royal-look-section .feature-image img{
+  border-color:rgba(185,152,90,.45);
+  box-shadow:18px 18px 0 rgba(185,152,90,.13);
+}
+.project-look-section.royal-look-section .feature-subgallery img{border-color:rgba(18,38,58,.14)}
+.royal-location-section{
+  border-top:1px solid rgba(208,180,122,.45) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ENQUIRY SUCCESS — client-satisfaction message after submit
+   ═══════════════════════════════════════════════════════════ */
+.form-success{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.success-icon{
+  display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;
+  background:rgba(185,152,90,.14);color:var(--gold);margin-bottom:8px;
+}
+.success-copy{color:#4a545d;line-height:1.8;font-size:14px;margin:0}
+.success-note{color:#8a8f96;font-size:12px;margin:6px 0 0}
+.success-note a{color:var(--gold);font-weight:700;text-decoration:none}
+.success-note a:hover{text-decoration:underline}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL TRANSITIONS — page load fade + card/button micro-motion
+   (.rv / .rv-in scroll reveals already exist further above and
+   are now applied site-wide via src/hooks/useReveal.js)
+   ═══════════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:no-preference){
+  main{animation:pageIn .5s cubic-bezier(.22,.8,.32,1) both}
+  @keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  /* Cards: unified lift-on-hover where not already covered */
+  .value-card,.overview-glance,.overview-cta-card,.contact-form,.key-details,
+  .development-panel,.apartment-plan-card,.construction-card,.payment-plan-card{
+    transition:transform .35s cubic-bezier(.22,.8,.32,1),box-shadow .35s cubic-bezier(.22,.8,.32,1);
+  }
+  .value-card:hover,.overview-glance:hover,.construction-card:hover,
+  .payment-plan-card:hover{transform:translateY(-4px)}
+  .overview-cta-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -16px rgba(18,38,58,.35)}
+
+  /* Contact rows: gentle slide on hover */
+  .contact-aside > a,.contact-address{
+    transition:transform .3s cubic-bezier(.22,.8,.32,1),background .3s;
+  }
+  .contact-aside > a:hover,.contact-address:hover{transform:translateX(6px)}
+
+  /* Feature/key-details images: soft zoom */
+  .detail-image img,.feature-image img,.construction-media img{
+    transition:transform .8s cubic-bezier(.22,.8,.32,1);
+  }
+  .detail-image:hover img,.construction-card:hover .construction-media img{transform:scale(1.04)}
+
+  /* Footer links: subtle slide */
+  .footer-grid a,.footer-grid span,.footer-legal-links a{transition:transform .25s,color .25s}
+  .footer-grid a:hover,.footer-legal-links a:hover{transform:translateX(3px)}
+}
+@media(prefers-reduced-motion:reduce){
+  main{animation:none}
+}
+
+/* Reveal system leaves .rv.rv-in{transform:none} in the cascade; re-assert
+   the hover lifts defined earlier so they keep working after reveal. */
+.stat-card:hover,.fact-card:hover,.unit-type-card:hover,.distance-card:hover,
+.timeline-item:hover{transform:translateY(-4px) !important}
+.amenity-tag:hover{transform:translateY(-2px) !important}
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE HERO IMAGE LAYER — same slow zoom as the Home hero
+   ═══════════════════════════════════════════════════════════ */
+.page-hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;z-index:0}
+.page-hero .container{position:relative;z-index:1}
+@media(prefers-reduced-motion:no-preference){
+  .page-hero-bg{animation:heroZoom 8s ease-out both}
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   BAHRIA SKY 2 STATS BANNER — final style authority
+   ═══════════════════════════════════════════════════════════ */
+.stats-strip{background:var(--gold) !important;border-bottom:none}
+.stats-grid{border-left:1px solid rgba(18,38,58,.18) !important}
+.stats-strip .stat-block{
+  border-right:1px solid rgba(18,38,58,.18);
+  padding:26px 18px !important;
+  display:flex;flex-direction:column;gap:9px;
+  align-items:center;text-align:center;
+  transition:background .3s;
+}
+/* Big, bold navy digits — clean & striking */
+.stats-strip .stat-block b{
+  font:800 clamp(32px,3.8vw,50px)/1 Manrope;
+  color:var(--navy);letter-spacing:-.02em;
+}
+.stats-strip .stat-block > span{
+  font:700 12px Inter;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--navy);
+}
+.stats-strip .stat-block:hover{background:rgba(18,38,58,.09)}
+@media(max-width:900px){
+  .stats-strip .stat-block{padding:22px 14px !important}
+  .stats-strip .stat-block b{font-size:clamp(28px,5.4vw,40px)}
+}
+
+/* Page hero readability: soft shadow behind hero text over imagery
+   (no design change — same layout, colors and type) */
+.page-hero h1,.page-hero p{position:relative;z-index:1}
+.page-hero h1{text-shadow:0 2px 22px rgba(12,28,42,.6)}
+.page-hero p{text-shadow:0 1px 14px rgba(12,28,42,.55)}
+
+
+/* ═══════════════════════════════════════════════════════════
+   HOVER LANGUAGE — cards & image cards (Royal Atrium + shared)
+   Lift · gold glow · image zoom · arrow slide
+   ═══════════════════════════════════════════════════════════ */
+
+/* Numbered key-feature tiles: lift + gold border + accent bar grows */
+.key-feature-tile{
+  transition:transform .35s cubic-bezier(.22,.8,.32,1),
+             border-color .35s,background .35s,box-shadow .35s;
+}
+.key-feature-tile:hover{
+  transform:translateY(-6px);
+  border-color:rgba(208,180,122,.55);
+  background:rgba(255,255,255,.09);
+  box-shadow:0 22px 44px -18px rgba(0,0,0,.5);
+}
+.key-feature-tile:after{
+  transition:width .4s cubic-bezier(.22,.8,.32,1),background .3s;
+}
+.key-feature-tile:hover:after{width:56px;background:var(--gold)}
+.key-feature-tile:hover span{
+  text-shadow:0 0 18px rgba(208,180,122,.45);
+}
+
+/* Booking / pricing cards: lift + gold frame + gold number */
+.pricing-card{
+  transition:transform .35s cubic-bezier(.22,.8,.32,1),
+             border-color .3s,box-shadow .35s;
+}
+.pricing-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 22px 44px -18px rgba(18,38,58,.45);
+}
+.pricing-card:hover b{color:var(--gold)}
+.pricing-card b{transition:color .3s}
+.booking-dark .pricing-card:hover{
+  background:rgba(208,180,122,.16);
+  border-color:rgba(208,180,122,.65);
+}
+
+/* Image cards: zoom + gold-tinted shadow lift */
+.detail-image,.project-card .project-image,.feature-image,.construction-media{
+  transition:box-shadow .4s cubic-bezier(.22,.8,.32,1),transform .35s cubic-bezier(.22,.8,.32,1);
+}
+.detail-image:hover{
+  box-shadow:0 26px 54px -22px rgba(18,38,58,.45);
+  transform:translateY(-5px);
+}
+.detail-image img{transition:transform .8s cubic-bezier(.22,.8,.32,1)}
+.detail-image:hover img{transform:scale(1.05)}
+
+/* Overview glance rows glide on hover */
+.overview-glance dl div{transition:background .25s,padding-left .25s}
+.overview-glance dl div:hover{background:rgba(185,152,90,.07);padding-left:6px}
+
+/* Distance cards: lift + gold time value */
+.distance-card{
+  transition:transform .3s cubic-bezier(.22,.8,.32,1),border-color .3s,box-shadow .3s;
+}
+.distance-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(208,180,122,.5);
+  box-shadow:0 18px 36px -16px rgba(18,38,58,.3);
+}
+.distance-card:hover b{color:#d0b47a}
+.distance-card b{transition:color .3s}
+
+/* Nearby cards: same family of motion */
+.nearby-card{
+  transition:transform .3s cubic-bezier(.22,.8,.32,1),border-color .3s,box-shadow .3s;
+}
+.nearby-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(208,180,122,.5);
+  box-shadow:0 18px 36px -16px rgba(18,38,58,.3);
+}
+
+/* Map frame: gentle zoom + gold frame */
+.location-map-frame img{
+  transition:transform .8s cubic-bezier(.22,.8,.32,1),border-color .3s,box-shadow .4s;
+}
+.location-map-frame:hover img{
+  transform:scale(1.03);
+  border-color:rgba(208,180,122,.55);
+  box-shadow:0 24px 50px -20px rgba(18,38,58,.4);
+}
+
+/* Text links keep the underline draw + arrow glide (already defined) */
+@media(prefers-reduced-motion:reduce){
+  .key-feature-tile,.pricing-card,.detail-image,.distance-card,.nearby-card,
+  .location-map-frame img,.overview-glance dl div{transition:none}
+  .key-feature-tile:hover,.pricing-card:hover,.detail-image:hover,
+  .distance-card:hover,.nearby-card:hover{transform:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HOVER PASS 2 — remaining Royal Atrium imagery & blocks
+   ═══════════════════════════════════════════════════════════ */
+
+/* Feature rows ("Inside the project"): image zoom + frame lift */
+.project-look-section .feature-image{
+  transition:transform .35s cubic-bezier(.22,.8,.32,1),box-shadow .4s;
+}
+.project-look-section .feature-image:hover{
+  transform:translateY(-5px);
+  box-shadow:0 26px 54px -22px rgba(18,38,58,.45);
+}
+.project-look-section .feature-image img,
+.project-look-section .feature-subgallery img{
+  transition:transform .8s cubic-bezier(.22,.8,.32,1),border-color .3s;
+}
+.project-look-section .feature-image:hover img{transform:scale(1.05)}
+.project-look-section .feature-subgallery img:hover{
+  transform:scale(1.05);
+  border-color:rgba(208,180,122,.55) !important;
+}
+
+/* Small gallery strip: each frame lifts + zooms */
+.gallery-strip-track img{
+  transition:transform .5s cubic-bezier(.22,.8,.32,1),box-shadow .4s,border-color .3s;
+}
+.gallery-strip-track img:hover{
+  transform:scale(1.04) translateY(-4px);
+  box-shadow:0 20px 40px -16px rgba(18,38,58,.4);
+  border-color:rgba(208,180,122,.55);
+}
+
+/* Progress photos */
+.progress-photos img{
+  transition:transform .5s cubic-bezier(.22,.8,.32,1),box-shadow .4s,border-color .3s;
+}
+.progress-photos img:hover{
+  transform:scale(1.04) translateY(-3px);
+  box-shadow:0 20px 40px -16px rgba(18,38,58,.4);
+  border-color:rgba(208,180,122,.55);
+}
+.progress-photos figcaption{transition:color .3s}
+.progress-photos figure:hover figcaption{color:var(--gold)}
+
+/* Payment plan: row highlight + header sheen */
+.payment-plan-table tbody tr{transition:background .25s}
+.payment-plan-table tbody tr:hover{background:rgba(185,152,90,.08)}
+.payment-plan-table td.pp-highlight{transition:background .25s}
+.payment-plan-table tbody tr:hover td.pp-highlight{background:rgba(185,152,90,.2)}
+
+/* Gallery strip container pauses on hover (if scrolling) */
+.gallery-strip:hover .gallery-strip-track{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  .project-look-section .feature-image,.gallery-strip-track img,
+  .progress-photos img,.payment-plan-table tbody tr{transition:none}
+  .project-look-section .feature-image:hover,.gallery-strip-track img:hover,
+  .progress-photos img:hover{transform:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT PAGE — value card hover language
+   Editorial number fills with gold, card lifts with warm wash
+   ═══════════════════════════════════════════════════════════ */
+.value-card{
+  transition:background .35s cubic-bezier(.22,.8,.32,1),transform .35s cubic-bezier(.22,.8,.32,1);
+}
+.value-card:hover{background:#fff;transform:translateY(-4px)}
+/* The outlined editorial number fills solid gold on hover */
+.value-card > span{
+  transition:color .35s,-webkit-text-stroke-color .35s;
+}
+.value-card:hover > span{
+  color:var(--gold) !important;
+  -webkit-text-stroke-color:var(--gold);
+}
+.value-card h3{transition:color .3s}
+.value-card:hover h3{color:var(--gold)}
+.value-card p{transition:color .3s}
+@media(prefers-reduced-motion:reduce){
+  .value-card,.value-card > span,.value-card h3{transition:none}
+  .value-card:hover{transform:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AMENITY SLIDER — smooth directional crossfade between cards
+   (all slides stacked via grid; the active one slides in,
+   the previous one slides out in the opposite direction)
+   ═══════════════════════════════════════════════════════════ */
+.amenity-track{display:grid}
+.amenity-slide{
+  grid-area:1 / 1;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateX(46px);
+  transition:opacity .55s cubic-bezier(.22,.8,.32,1),
+             transform .55s cubic-bezier(.22,.8,.32,1),
+             visibility .55s;
+}
+.amenity-slide.prev{transform:translateX(-46px)}
+.amenity-slide.current{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transform:none;z-index:1;
+}
+
+/* Image hover inside the amenity card */
+.amenity-slide-media{overflow:hidden}
+.amenity-slide-media img{
+  transition:transform .9s cubic-bezier(.22,.8,.32,1);
+}
+.amenity-slide.current:hover .amenity-slide-media img{transform:scale(1.06)}
+.amenity-slide-media:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 60%,rgba(18,38,58,.25));
+  opacity:0;transition:opacity .4s;
+}
+.amenity-slide.current:hover .amenity-slide-media:after{opacity:1}
+
+/* Copy column: gentle rise on hover */
+.amenity-slide-copy{transition:transform .4s cubic-bezier(.22,.8,.32,1)}
+.amenity-slide.current:hover .amenity-slide-copy{transform:translateY(-3px)}
+
+/* Nav buttons: gold fill already on hover; add lift */
+.amenity-nav button{transition:all .3s cubic-bezier(.22,.8,.32,1)}
+.amenity-nav button:hover{transform:translateY(-2px)}
+.amenity-dots button{transition:color .3s,border-color .3s}
+@media(prefers-reduced-motion:reduce){
+  .amenity-slide{transition:none;transform:none}
+  .amenity-slide.current .amenity-slide-media img{transition:none}
+}
+
+/* Location map: link affordance on hover (opens Google Maps) */
+.location-map-frame a{display:block;position:relative}
+.location-map-frame a:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:rgba(18,38,58,.0);transition:background .3s;
+}
+.location-map-frame a:hover:after{background:rgba(18,38,58,.08)}
+.location-map-frame img{display:block;cursor:pointer}
+
+/* ═══════════════════════════════════════════════════════════
+   ENQUIRY SUCCESS — smooth entrance after submitting
+   ═══════════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:no-preference){
+  .form-success{
+    animation:successIn .65s cubic-bezier(.22,.8,.32,1) both;
+  }
+  .form-success .success-icon{
+    animation:successPop .65s cubic-bezier(.22,.8,.32,1) .1s both;
+  }
+  .form-success .success-title{
+    animation:successIn .65s cubic-bezier(.22,.8,.32,1) .2s both;
+  }
+  .form-success .success-copy{
+    animation:successIn .65s cubic-bezier(.22,.8,.32,1) .32s both;
+  }
+  .form-success .success-note{
+    animation:successIn .65s cubic-bezier(.22,.8,.32,1) .44s both;
+  }
+  @keyframes successIn{
+    from{opacity:0;transform:translateY(18px)}
+    to{opacity:1;transform:none}
+  }
+  @keyframes successPop{
+    0%{opacity:0;transform:scale(.4)}
+    60%{transform:scale(1.12)}
+    100%{opacity:1;transform:scale(1)}
+  }
+}
+
+/* Form fades up and away before the success message takes over */
+@media(prefers-reduced-motion:no-preference){
+  .contact-form.form-leave{
+    animation:formOut .28s ease both;
+    pointer-events:none;
+  }
+  @keyframes formOut{
+    to{opacity:0;transform:translateY(-12px)}
+  }
 }

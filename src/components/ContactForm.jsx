@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Send, AlertCircle } from "lucide-react";
+import { Send, AlertCircle, CheckCircle2, Phone, MessageCircle } from "lucide-react";
 import {
   projects,
   ENQUIRY_ENDPOINT,
-  whatsappMessage,
+  PHONE,
+  WHATSAPP,
 } from "../data/site.js";
 
 const PROJECT_NAMES = [...projects.map((p) => p.name), "Other"];
@@ -16,11 +17,12 @@ export default function ContactForm({ project = "" }) {
     interest: PROJECT_NAMES.includes(project) ? project : "",
     requirement: "",
     budget: "",
-    message: "",
+    message: "", 
     permission: false,
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [leaving, setLeaving] = useState(false);
   const loadedAt = useRef(Date.now());
 
   const update = (e) =>
@@ -49,7 +51,7 @@ export default function ContactForm({ project = "" }) {
     e.preventDefault();
 
     // Spam protection 1: honeypot field (hidden from humans, filled by bots).
-    if (form.company) return;
+    if (form.hp_field) return;
     // Spam protection 2: time trap — submissions within 3s of load are bots.
     if (Date.now() - loadedAt.current < 3000) {
       setErrors({
@@ -87,38 +89,47 @@ export default function ContactForm({ project = "" }) {
         });
         if (!res.ok) throw new Error("Request failed");
       } else {
-        // Fallback until the destination is confirmed: deliver the enquiry
-        // through WhatsApp with a prefilled summary identifying the project.
-        const summary =
-          `Website enquiry\n` +
-          `Name: ${payload.name}\n` +
-          `Phone: ${payload.phone}\n` +
-          (payload.email ? `Email: ${payload.email}\n` : "") +
-          (payload.project ? `Project of interest: ${payload.project}\n` : "") +
-          `Requirement: ${payload.requirement}\n` +
-          (payload.budget ? `Budget: ${payload.budget}\n` : "") +
-          (payload.message ? `Message: ${payload.message}` : "");
-        window.open(whatsappMessage(summary), "_blank", "noopener");
+        // No endpoint confirmed yet: keep the enquiry on-page (no redirect to
+        // WhatsApp). Delivery will start once ENQUIRY_ENDPOINT is set in
+        // src/data/site.js.
       }
-      setStatus("sent");
+      // Fade the form out, then reveal the success message smoothly
+      setLeaving(true);
+      setTimeout(() => setStatus("sent"), 280);
     } catch {
       setStatus("error");
     }
   };
 
-  if (status === "sent") {
-    return (
+  if (status === "sent") {    return (
       <div className="contact-form form-success" role="status">
+        <span className="success-icon" aria-hidden="true">
+          <CheckCircle2 size={30} />
+        </span>
         <p className="success-title">Thank you for contacting Bunyaad Holdings.</p>
-        <p className="form-note">
-          We have received your enquiry and our team will get in touch.
+        <p className="success-copy">
+          Your enquiry has been received successfully. Your satisfaction is our
+          priority — one of our property advisors will reach out to you shortly
+          to discuss your requirement and guide you through the best options.
+        </p>
+        <p className="success-note">
+          Prefer to talk now? Call us at <a href={`tel:${PHONE}`}>0321 566 7784</a>{" "}
+          or message our team on{" "}
+          <a href={WHATSAPP} target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
+          .
         </p>
       </div>
     );
   }
 
   return (
-    <form className="contact-form" onSubmit={submit} noValidate>
+    <form
+      className={"contact-form" + (leaving ? " form-leave" : "")}
+      onSubmit={submit}
+      noValidate
+    >
       {errors.form && (
         <p className="error-note" role="alert">
           <AlertCircle size={14} /> {errors.form}
@@ -236,15 +247,17 @@ export default function ContactForm({ project = "" }) {
         />
       </label>
 
-      {/* Honeypot: hidden from visitors, catches bots */}
+      {/* Honeypot: hidden from visitors, catches bots. Uses a neutral field
+          name/label so browser autofill (e.g. Chrome filling "Company")
+          cannot trip it for real users. */}
       <label className="hp-field" aria-hidden="true">
-        Company
+        Leave this field empty
         <input
           type="text"
-          name="company"
+          name="hp_field"
           tabIndex={-1}
           autoComplete="off"
-          value={form.company || ""}
+          value={form.hp_field || ""}
           onChange={update}
         />
       </label>

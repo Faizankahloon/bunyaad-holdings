@@ -11,6 +11,7 @@ import Contact from "./pages/Contact.jsx";
 import Developments from "./pages/Developments.jsx";
 import Legal from "./pages/Legal.jsx";
 import { projects } from "./data/site.js";
+import useReveal from "./hooks/useReveal.js";
 
 // Basic per-page SEO: title + description + social preview tags are
 // updated on every route change.
@@ -75,6 +76,9 @@ export default function App() {
   const projectParam = params.get("project") || "";
   const slug = path.replace("/", "");
 
+  // Shared scroll-reveal transitions on every page (re-runs per route)
+  useReveal(path);
+
   // ── Per-page SEO tags ──
   useEffect(() => {
     const project = projects.find((p) => p.slug === slug);
@@ -98,7 +102,7 @@ export default function App() {
   else if (path === "/developments") page = <Developments />;
   else if (path === "/privacy-notice") page = <Legal page="privacy" />;
   else if (path === "/website-terms") page = <Legal page="terms" />;
-  else page = <ProjectPage slug={slug} />;
+  else page = <ProjectPage key={slug} slug={slug} />;
 
   return (
     <>

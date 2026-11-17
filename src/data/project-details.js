@@ -406,6 +406,7 @@ export const projectDetails = {
     locationBlock: {
       heading: "Location That Makes Life Easy",
       image: bs2Neighbourhood,
+      mapUrl: "https://www.google.com/maps/search/?api=1&query=Bahria+Sky+2+Lahore",
       text: "Bahria Sky 2 is located in one of the most organized and promising zones of Lahore. It provides effortless connectivity with the city.",
       distances: [
         { time: "10min", label: "Drive to", place: "Thokar Niaz Baig" },
@@ -474,6 +475,8 @@ export const projectDetails = {
     },
     locationBlock: {
       eyebrow: "PRIME LOCATION",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=Curve+Pine+Avenue+Lahore",
       heading: "Positioned Right at the Heart of Lahore's Growth.",
       text: "Its strategic placement ensures effortless mobility for teams, clients, and suppliers—making it one of the most convenient commercial locations in the city.",
       intro:
@@ -686,6 +689,8 @@ export const projectDetails = {
     },
     locationBlock: {
       eyebrow: "PRIME LOCATION",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=Sky+Tree+Tower+Lahore",
       heading: "Positioned Right at the Heart of Lahore's Growth.",
       text: "Its strategic placement ensures effortless mobility for teams, clients, and suppliers—making it one of the most convenient commercial locations in the city.",
       intro:
