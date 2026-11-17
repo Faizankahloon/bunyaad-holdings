@@ -1008,12 +1008,12 @@ p {
     top: 72px;
     left: 0;
     right: 0;
-    background: var(--ivory);
+    background: #12263a;
     padding: 20px 24px 25px;
     align-items: stretch;
     gap: 0;
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 14px 22px #12263a12;
+    border-bottom: 1px solid rgba(185, 152, 90, 0.35);
+    box-shadow: 0 14px 22px #12263a55;
   }
   .nav.open {
     display: flex;
@@ -1021,10 +1021,19 @@ p {
   }
   .nav-item {
     padding: 12px 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
+  .nav-item:last-child {
+    border-bottom: 0;
+  }
+  /* Light links on the navy mobile panel (global dark-theme colors keep them visible) */
   .nav-item > a {
     font-size: 13px;
+    color: rgba(255, 255, 255, 0.88) !important;
+  }
+  .nav-item > a:hover,
+  .nav-item > a.active {
+    color: #d0b47a !important;
   }
   .dropdown {
     position: static;
@@ -1034,9 +1043,15 @@ p {
     background: transparent;
     padding: 7px 0 0 14px;
   }
-  .dropdown a {
+  .nav .dropdown a {
     font-size: 12px;
     padding: 7px;
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+  .nav .dropdown a:hover,
+  .nav .dropdown a:focus-visible {
+    color: #d0b47a !important;
+    background: rgba(208, 180, 122, 0.12) !important;
   }
   .hero {
     height: 100vh;
@@ -3667,7 +3682,7 @@ h2 em,
 /* 8 — Responsive: hero + grids */
 @media (max-width: 900px) {
   .header .nav-wrap {
-    border-radius: 22px;
+    border-radius: 0;
   }
   .hero-side-label {
     display: none;
