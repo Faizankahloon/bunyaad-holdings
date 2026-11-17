@@ -782,7 +782,7 @@ export default function ProjectPage({ slug }) {
                 <MapPin size={15} /> {d.locationBlock.sub}
               </p>
             )}
-            {d.locationBlock.mapUrl && (
+            {d.locationBlock.mapUrl && !d.locationBlock.image && (
               <div style={{ textAlign: "center", marginTop: 18 }}>
                 <a
                   className="text-link"
