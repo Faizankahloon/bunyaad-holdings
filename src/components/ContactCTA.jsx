@@ -1,5 +1,11 @@
 import React from "react";
-import { ArrowUpRight, MessageCircle, Clock, MapPin, ShieldCheck } from "lucide-react";
+import {
+  ArrowUpRight,
+  MessageCircle,
+  Clock,
+  MapPin,
+  ShieldCheck,
+} from "lucide-react";
 import { PHONE, WHATSAPP } from "../data/site.js";
 
 // High-impact call-to-action band, shared by every page so the CTA is
@@ -57,9 +63,11 @@ export default function ContactCTA() {
             ].map((t, i) => (
               <li key={t}>
                 {
-                  [<Clock key="c" size={13} />, <ShieldCheck key="s" size={13} />, <MapPin key="m" size={13} />][
-                    i % 3
-                  ]
+                  [
+                    <Clock key="c" size={13} />,
+                    <ShieldCheck key="s" size={13} />,
+                    <MapPin key="m" size={13} />,
+                  ][i % 3]
                 }
                 {t}
               </li>

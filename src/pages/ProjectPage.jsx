@@ -8,10 +8,7 @@ import {
   Building2,
   FileText,
 } from "lucide-react";
-import {
-  whatsappMessage,
-  projects,
-} from "../data/site.js";
+import { whatsappMessage, projects } from "../data/site.js";
 import { projectDetails } from "../data/project-details.js";
 import PageHero from "../components/PageHero.jsx";
 import SectionHead from "../components/SectionHead.jsx";
@@ -43,7 +40,8 @@ function AmenitySlider({ groups, name, image }) {
           <div
             key={g.title}
             className={
-              "amenity-slide" + (j === i ? " current" : j < i ? " prev" : " next")
+              "amenity-slide" +
+              (j === i ? " current" : j < i ? " prev" : " next")
             }
             aria-hidden={j !== i}
           >
@@ -153,7 +151,9 @@ function GalleryStrip({ images, alt }) {
         className="gallery-strip-track"
         style={{
           transform: `translateX(${-idx * STEP}px)`,
-          transition: anim ? "transform 1.1s cubic-bezier(.25,.1,.25,1)" : "none",
+          transition: anim
+            ? "transform 1.1s cubic-bezier(.25,.1,.25,1)"
+            : "none",
         }}
       >
         {[...images, ...images].map((src, i) => (
@@ -207,7 +207,9 @@ export default function ProjectPage({ slug }) {
       )}
 
       {/* Introduction — per project spec */}
-      <section className={`section-pad section-tint section-rule${slug === "curve" ? " curve-intro-section" : slug === "sky-tree-tower" ? " sky-tree-intro-section" : ""}`}>
+      <section
+        className={`section-pad section-tint section-rule${slug === "curve" ? " curve-intro-section" : slug === "sky-tree-tower" ? " sky-tree-intro-section" : ""}`}
+      >
         <div className="container project-detail-grid">
           <div>
             <span className="eyebrow">PROJECT INTRODUCTION</span>
@@ -260,7 +262,10 @@ export default function ProjectPage({ slug }) {
 
       {/* Booking amounts (Royal Atrium Mall) */}
       {d.pricing && (
-        <section className="section-pad section-dark booking-dark" style={{ paddingTop: 56, paddingBottom: 56 }}>
+        <section
+          className="section-pad section-dark booking-dark"
+          style={{ paddingTop: 56, paddingBottom: 56 }}
+        >
           <div className="container">
             <SectionHead
               center
@@ -286,7 +291,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Full overview copy */}
       {d.overview && (
-        <section className={`section-pad overview-section section-rule${slug === "curve" ? " curve-overview-section" : slug === "sky-tree-tower" ? " sky-tree-overview-section" : ""}`}>
+        <section
+          className={`section-pad overview-section section-rule${slug === "curve" ? " curve-overview-section" : slug === "sky-tree-tower" ? " sky-tree-overview-section" : ""}`}
+        >
           <div className="container overview-layout">
             <div>
               <span className="eyebrow">OVERVIEW</span>
@@ -351,9 +358,18 @@ export default function ProjectPage({ slug }) {
               {d.constructionImages.map((c, ci) => (
                 <figure className="construction-card" key={c.label}>
                   <div className="construction-media">
-                    <img src={c.image} alt={`${p.name} construction — ${c.label}`} loading="lazy" />
+                    <img
+                      src={c.image}
+                      alt={`${p.name} construction — ${c.label}`}
+                      loading="lazy"
+                    />
                     <span className="construction-badge">
-                      <i>{String(d.constructionImages.length - ci).padStart(2, "0")}</i>
+                      <i>
+                        {String(d.constructionImages.length - ci).padStart(
+                          2,
+                          "0",
+                        )}
+                      </i>
                       {c.label}
                     </span>
                   </div>
@@ -366,7 +382,9 @@ export default function ProjectPage({ slug }) {
       )}
 
       {/* Key details — Developer / Location / Property focus / Bunyaad role */}
-      <section className={`section-pad section-white section-rule${slug === "curve" ? " curve-details-section" : slug === "sky-tree-tower" ? " sky-tree-details-section" : ""}`}>
+      <section
+        className={`section-pad section-white section-rule${slug === "curve" ? " curve-details-section" : slug === "sky-tree-tower" ? " sky-tree-details-section" : ""}`}
+      >
         <div className="container">
           <div className="project-status-row">
             <span className="status-chip">
@@ -415,7 +433,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Key features (Royal Atrium) */}
       {d.keyFeatures && (
-        <section className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : ""}${slug === "royal-atrium-mall" ? " royal-features-section" : ""}`}>
+        <section
+          className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : ""}${slug === "royal-atrium-mall" ? " royal-features-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               rail
@@ -440,7 +460,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Feature groups (HF projects) */}
       {d.featureGroups && (
-        <section className={`section-pad section-white section-rule${slug === "curve" ? " curve-amenities-section" : slug === "sky-tree-tower" ? " sky-tree-amenities-section" : ""}`}>
+        <section
+          className={`section-pad section-white section-rule${slug === "curve" ? " curve-amenities-section" : slug === "sky-tree-tower" ? " sky-tree-amenities-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               rail
@@ -452,7 +474,11 @@ export default function ProjectPage({ slug }) {
                 </>
               }
             />
-            <AmenitySlider groups={d.featureGroups} name={p.name} image={d.amenitiesImage} />
+            <AmenitySlider
+              groups={d.featureGroups}
+              name={p.name}
+              image={d.amenitiesImage}
+            />
           </div>
         </section>
       )}
@@ -469,15 +495,17 @@ export default function ProjectPage({ slug }) {
                   loading="lazy"
                 />
                 {d.specialSection.images &&
-                  d.specialSection.images.slice(1).map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt={`${d.specialSection.heading} — view ${i + 2}`}
-                      loading="lazy"
-                      className="special-sub"
-                    />
-                  ))}
+                  d.specialSection.images
+                    .slice(1)
+                    .map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`${d.specialSection.heading} — view ${i + 2}`}
+                        loading="lazy"
+                        className="special-sub"
+                      />
+                    ))}
               </div>
               <div>
                 <span className="eyebrow eyebrow-light">
@@ -507,7 +535,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Amenities list (Bahria Sky 2) */}
       {d.amenities && (
-        <section className={`section-pad section-tint section-rule${slug === "curve" ? " curve-timeline-section" : ""}`}>
+        <section
+          className={`section-pad section-tint section-rule${slug === "curve" ? " curve-timeline-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               rail
@@ -532,7 +562,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Facilities list (Bahria Sky 2) */}
       {d.facilities && (
-        <section className={`section-pad section-white section-rule${slug === "curve" ? " curve-payment-section" : ""}`}>
+        <section
+          className={`section-pad section-white section-rule${slug === "curve" ? " curve-payment-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               center
@@ -578,7 +610,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Image features */}
       {d.imageFeatures && (
-        <section className={`section-pad section-rule project-look-section${slug === "royal-atrium-mall" ? " royal-look-section" : ""}`}>
+        <section
+          className={`section-pad section-rule project-look-section${slug === "royal-atrium-mall" ? " royal-look-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               rail
@@ -611,7 +645,12 @@ export default function ProjectPage({ slug }) {
                     {s.gallery && (
                       <div className="feature-subgallery">
                         {s.gallery.map((g, gi) => (
-                          <img key={gi} src={g} alt={`${s.title} — view ${gi + 1}`} loading="lazy" />
+                          <img
+                            key={gi}
+                            src={g}
+                            alt={`${s.title} — view ${gi + 1}`}
+                            loading="lazy"
+                          />
                         ))}
                       </div>
                     )}
@@ -646,7 +685,11 @@ export default function ProjectPage({ slug }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <img src={f.image} alt={`${p.name} — ${f.label}`} loading="lazy" />
+                  <img
+                    src={f.image}
+                    alt={`${p.name} — ${f.label}`}
+                    loading="lazy"
+                  />
                   <span>{f.label}</span>
                 </a>
               ))}
@@ -681,7 +724,11 @@ export default function ProjectPage({ slug }) {
                       </div>
                     ))}
                   </dl>
-                  <img src={a.image} alt={`${p.name} — ${a.type} blueprint`} loading="lazy" />
+                  <img
+                    src={a.image}
+                    alt={`${p.name} — ${a.type} blueprint`}
+                    loading="lazy"
+                  />
                 </article>
               ))}
             </div>
@@ -707,13 +754,19 @@ export default function ProjectPage({ slug }) {
               {d.unitTypes.map((u) => (
                 <figure className="unit-type-card" key={u.title}>
                   <div className="unit-type-media">
-                    <img src={u.image} alt={`${p.name} — ${u.title}`} loading="lazy" />
+                    <img
+                      src={u.image}
+                      alt={`${p.name} — ${u.title}`}
+                      loading="lazy"
+                    />
                     <a
                       className="unit-type-overlay"
                       href={requestHref}
                       aria-label={`Enquire about ${u.title} in ${p.name}`}
                     >
-                      <span>Enquire About This Unit <ArrowUpRight size={15} /></span>
+                      <span>
+                        Enquire About This Unit <ArrowUpRight size={15} />
+                      </span>
                     </a>
                   </div>
                   <figcaption>{u.title}</figcaption>
@@ -726,7 +779,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Location block */}
       {d.locationBlock && (
-        <section className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : slug === "sky-tree-tower" ? " sky-tree-location-section" : ""}${slug === "royal-atrium-mall" ? " royal-location-section" : ""}`}>
+        <section
+          className={`section-pad section-dark section-rule${slug === "curve" ? " curve-location-section" : slug === "sky-tree-tower" ? " sky-tree-location-section" : ""}${slug === "royal-atrium-mall" ? " royal-location-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               center
@@ -836,7 +891,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Timeline (HF projects) */}
       {d.timeline && (
-        <section className={`section-pad section-tint section-rule${slug === "curve" ? " curve-timeline-section" : slug === "sky-tree-tower" ? " sky-tree-timeline-section" : ""}`}>
+        <section
+          className={`section-pad section-tint section-rule${slug === "curve" ? " curve-timeline-section" : slug === "sky-tree-tower" ? " sky-tree-timeline-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               rail
@@ -861,7 +918,11 @@ export default function ProjectPage({ slug }) {
               <div className="progress-photos">
                 {d.progressImages.map((c) => (
                   <figure key={c.caption}>
-                    <img src={c.src} alt={`${p.name} progress — ${c.caption}`} loading="lazy" />
+                    <img
+                      src={c.src}
+                      alt={`${p.name} progress — ${c.caption}`}
+                      loading="lazy"
+                    />
                     <figcaption>{c.caption}</figcaption>
                   </figure>
                 ))}
@@ -873,7 +934,9 @@ export default function ProjectPage({ slug }) {
 
       {/* Payment plan (Curve) */}
       {d.paymentPlan && (
-        <section className={`section-pad section-white section-rule${slug === "curve" ? " curve-payment-section" : ""}`}>
+        <section
+          className={`section-pad section-white section-rule${slug === "curve" ? " curve-payment-section" : ""}`}
+        >
           <div className="container">
             <SectionHead
               eyebrow="INVESTMENT OPTIONS"
@@ -891,7 +954,10 @@ export default function ProjectPage({ slug }) {
                   <tr>
                     <th className="pp-category-col">Category</th>
                     {d.paymentPlan.columns.map((c) => (
-                      <th key={c.title} className={c.highlight ? "pp-highlight" : ""}>
+                      <th
+                        key={c.title}
+                        className={c.highlight ? "pp-highlight" : ""}
+                      >
                         {c.title}
                         {c.sub && <span>{c.sub}</span>}
                       </th>
@@ -909,7 +975,14 @@ export default function ProjectPage({ slug }) {
                           </td>
                         )}
                         {row.map((v, ci) => (
-                          <td key={ci} className={d.paymentPlan.columns[ci].highlight ? "pp-highlight" : ""}>
+                          <td
+                            key={ci}
+                            className={
+                              d.paymentPlan.columns[ci].highlight
+                                ? "pp-highlight"
+                                : ""
+                            }
+                          >
                             {v}
                           </td>
                         ))}
@@ -929,13 +1002,18 @@ export default function ProjectPage({ slug }) {
       )}
 
       {/* Gallery */}
-      <section className={`gallery-section${slug === "curve" ? " curve-gallery-section" : slug === "sky-tree-tower" ? " sky-tree-gallery-section" : ""}`}>
+      <section
+        className={`gallery-section${slug === "curve" ? " curve-gallery-section" : slug === "sky-tree-tower" ? " sky-tree-gallery-section" : ""}`}
+      >
         <div className="container">
           <SectionHead
             eyebrow="PROJECT GALLERY"
             title={d.galleryHeading || "A closer look"}
           />
-          <GalleryStrip images={d.gallery} alt={(n) => `${p.name} gallery ${n + 1}`} />
+          <GalleryStrip
+            images={d.gallery}
+            alt={(n) => `${p.name} gallery ${n + 1}`}
+          />
           {(d.constructionNote || d.galleryIncludesRenders) && (
             <div className="gallery-note">
               <Sparkles size={20} />
@@ -957,7 +1035,9 @@ export default function ProjectPage({ slug }) {
       </section>
 
       {/* Enquiry form — identifies the selected project automatically */}
-      <section className={`section-pad section-white section-rule section-form${slug === "curve" ? " curve-enquiry-section" : slug === "sky-tree-tower" ? " sky-tree-enquiry-section" : ""}`}>
+      <section
+        className={`section-pad section-white section-rule section-form${slug === "curve" ? " curve-enquiry-section" : slug === "sky-tree-tower" ? " sky-tree-enquiry-section" : ""}`}
+      >
         <div className="container enquiry-embed">
           <div>
             <span className="eyebrow">PROJECT ENQUIRY</span>
@@ -980,9 +1060,10 @@ export default function ProjectPage({ slug }) {
         {/* Shared note (per project spec) — inside the same white section */}
         <div className="container">
           <p className="legal-note">
-            <FileText size={13} /> Project information, availability and purchase
-            terms are subject to confirmation. Renderings illustrate proposed
-            designs. Please review the relevant project documents before booking.
+            <FileText size={13} /> Project information, availability and
+            purchase terms are subject to confirmation. Renderings illustrate
+            proposed designs. Please review the relevant project documents
+            before booking.
           </p>
         </div>
       </section>

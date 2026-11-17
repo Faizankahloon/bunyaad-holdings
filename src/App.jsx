@@ -87,7 +87,7 @@ export default function App() {
           title: `${project.name} — ${project.location} | Bunyaad Holdings`,
           description: `${project.description} Project sales and marketing by Bunyaad Holdings. Contact our team for details and site visits.`,
         }
-      : (STATIC_META[path] || STATIC_META["/"]);
+      : STATIC_META[path] || STATIC_META["/"];
     document.title = meta.title;
     setMeta("description", meta.description);
     setMeta("og:title", meta.title);

@@ -7,7 +7,10 @@ export function go(path) {
   window.scrollTo(0, 0);
 }
 
-export default function EnquireButton({ children = "Enquire Now", className = "" }) {
+export default function EnquireButton({
+  children = "Enquire Now",
+  className = "",
+}) {
   return (
     <a
       className={`btn btn-gold ${className}`}

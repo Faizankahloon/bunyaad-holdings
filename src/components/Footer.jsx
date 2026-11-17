@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { PHONE, WHATSAPP } from "../data/site.js";
@@ -16,9 +15,7 @@ export default function Footer() {
             </span>
           </a>
 
-          <h4 className="company-description-heading">
-            Company Description
-          </h4>
+          <h4 className="company-description-heading">Company Description</h4>
 
           <p className="footer-copy">
             Bunyaad Holdings connects buyers with residential and commercial

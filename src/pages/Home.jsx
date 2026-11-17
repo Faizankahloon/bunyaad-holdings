@@ -108,7 +108,10 @@ export default function Home() {
         </div>
         <div className="hero-side-label">LAHORE · PAKISTAN</div>
       </section>
-      <section className="stats-strip" aria-label="Bunyaad Holdings at a glance">
+      <section
+        className="stats-strip"
+        aria-label="Bunyaad Holdings at a glance"
+      >
         <div className="container stats-grid">
           <div className="stat-block">
             <b>04</b>
@@ -224,7 +227,11 @@ export default function Home() {
       </section>
       <section className="why-section">
         <div className="why-image">
-          <img src={whyImage} alt="Contemporary residential architecture" loading="lazy" />
+          <img
+            src={whyImage}
+            alt="Contemporary residential architecture"
+            loading="lazy"
+          />
         </div>
         <div className="why-copy">
           <span className="eyebrow">THE BUNYAAD APPROACH</span>

@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Send, AlertCircle, CheckCircle2, Phone, MessageCircle } from "lucide-react";
 import {
-  projects,
-  ENQUIRY_ENDPOINT,
-  PHONE,
-  WHATSAPP,
-} from "../data/site.js";
+  Send,
+  AlertCircle,
+  CheckCircle2,
+  Phone,
+  MessageCircle,
+} from "lucide-react";
+import { projects, ENQUIRY_ENDPOINT, PHONE, WHATSAPP } from "../data/site.js";
 
 const PROJECT_NAMES = [...projects.map((p) => p.name), "Other"];
 
@@ -17,7 +18,7 @@ export default function ContactForm({ project = "" }) {
     interest: PROJECT_NAMES.includes(project) ? project : "",
     requirement: "",
     budget: "",
-    message: "", 
+    message: "",
     permission: false,
   });
   const [errors, setErrors] = useState({});
@@ -101,20 +102,23 @@ export default function ContactForm({ project = "" }) {
     }
   };
 
-  if (status === "sent") {    return (
+  if (status === "sent") {
+    return (
       <div className="contact-form form-success" role="status">
         <span className="success-icon" aria-hidden="true">
           <CheckCircle2 size={30} />
         </span>
-        <p className="success-title">Thank you for contacting Bunyaad Holdings.</p>
+        <p className="success-title">
+          Thank you for contacting Bunyaad Holdings.
+        </p>
         <p className="success-copy">
           Your enquiry has been received successfully. Your satisfaction is our
           priority — one of our property advisors will reach out to you shortly
           to discuss your requirement and guide you through the best options.
         </p>
         <p className="success-note">
-          Prefer to talk now? Call us at <a href={`tel:${PHONE}`}>0321 566 7784</a>{" "}
-          or message our team on{" "}
+          Prefer to talk now? Call us at{" "}
+          <a href={`tel:${PHONE}`}>0321 566 7784</a> or message our team on{" "}
           <a href={WHATSAPP} target="_blank" rel="noreferrer">
             WhatsApp
           </a>
@@ -217,7 +221,9 @@ export default function ContactForm({ project = "" }) {
             onChange={update}
             placeholder="Apartment, shop, office..."
             aria-invalid={Boolean(errors.requirement)}
-            aria-describedby={errors.requirement ? "err-requirement" : undefined}
+            aria-describedby={
+              errors.requirement ? "err-requirement" : undefined
+            }
           />
           {errors.requirement && (
             <span className="field-error" id="err-requirement" role="alert">
@@ -288,7 +294,8 @@ export default function ContactForm({ project = "" }) {
         type="submit"
         disabled={status === "sending"}
       >
-        {status === "sending" ? "Sending…" : "Send My Enquiry"} <Send size={16} />
+        {status === "sending" ? "Sending…" : "Send My Enquiry"}{" "}
+        <Send size={16} />
       </button>
     </form>
   );
