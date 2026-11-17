@@ -236,16 +236,16 @@ export default function Home() {
         <div className="why-copy">
           <span className="eyebrow">THE BUNYAAD APPROACH</span>
           <h2>
-            A Clearer Path to
+            A Clearer Path for
             <br />
-            <em>Your Next Property.</em>
+            <em>Your Next Investment.</em>
           </h2>
           <ul>
             {[
-              "Residential and commercial options through one point of contact.",
-              "Guidance based on your budget and requirements.",
-              "Clear information about projects and purchase options.",
-              "Assistance with enquiries and site visit arrangements.",
+              "Explore residential and commercial investment opportunities with one dedicated point of contact.",
+              "We match you with projects that fit your budget and investment goals.",
+              "Transparent details on projects, returns, and payment plans.",
+              "We handle your enquiries and arrange site visits at your convenience.",
             ].map((t) => (
               <li key={t}>
                 <CheckCircle2 size={19} />
