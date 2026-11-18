@@ -139,7 +139,7 @@ export default function Legal({ page }) {
   const data = PAGES[page] || PAGES.privacy;
   return (
     <>
-      <PageHero eyebrow={data.eyebrow} title={data.title} />
+      <PageHero half eyebrow={data.eyebrow} title={data.title} />
       <section className="section-pad section-white">
         <div className="container legal-page">
           {data.sections.map(([heading, text]) => (

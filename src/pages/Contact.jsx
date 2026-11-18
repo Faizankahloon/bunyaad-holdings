@@ -8,6 +8,7 @@ export default function Contact({ project = "" }) {
   return (
     <>
       <PageHero
+        half
         variant="compact"
         eyebrow="START A CONVERSATION"
         title={

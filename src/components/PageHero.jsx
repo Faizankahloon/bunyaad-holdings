@@ -1,9 +1,13 @@
 import React from "react";
 
-export default function PageHero({ eyebrow, title, copy, image, variant }) {
+export default function PageHero({ eyebrow, title, copy, image, variant, half }) {
   return (
     <section
-      className={"page-hero" + (variant ? " page-hero--" + variant : "")}
+      className={
+        "page-hero" +
+        (variant ? " page-hero--" + variant : "") +
+        (half ? " page-hero--half" : "")
+      }
       style={
         image
           ? {

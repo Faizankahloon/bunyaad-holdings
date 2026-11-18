@@ -22,10 +22,11 @@ import bahriaSkyInterior1 from "../assets/images/bahria-sky-2/interior-1.webp";
 import bahriaSkyInterior2 from "../assets/images/bahria-sky-2/interior-2.webp";
 import bahriaSkyPenthouse from "../assets/images/bahria-sky-2/penthouse.webp";
 import bahriaSkyConstruction from "../assets/images/bahria-sky-2/construction-sep-2026.webp";
+import bahriaSkyOverview from "../assets/images/bahria-sky-2/overview/overview.webp";
 import bahriaSkyAmenitiesRef from "../assets/images/bahria-sky-2/amenities-ref.webp";
 
 // Bahria Sky 2 — additional reference content (ozdevelopers.com/projects/bahria-sky-2)
-import bs2MedicalRender from "../assets/images/bahria-sky-2/medical-render.webp";
+import bs2MedicalRender from "../assets/images/bahria-sky-2/medical-render-bunyaad.webp";
 import bs2Neighbourhood from "../assets/images/bahria-sky-2/neighbourhood.webp";
 import bs2Food1 from "../assets/images/bahria-sky-2/food-court/fc-1.webp";
 import bs2Food2 from "../assets/images/bahria-sky-2/food-court/fc-2.webp";
@@ -71,6 +72,10 @@ import curveInterior2 from "../assets/images/curve/interior-2.webp";
 import curveInterior3 from "../assets/images/curve/interior-3.webp";
 import curveRender from "../assets/images/curve/render-1.webp";
 import curveAmenities from "../assets/images/curve/amenities.webp";
+import curveAmenityArchitecture from "../assets/images/curve/amenities/architecture.webp";
+import curveAmenitySecurity from "../assets/images/curve/amenities/security.webp";
+import curveAmenityDining from "../assets/images/curve/amenities/dining.webp";
+import curveAmenityRetail from "../assets/images/curve/amenities/retail.webp";
 import curveRef03 from "../assets/images/curve/ref/Curve-03.webp";
 import curveRef05 from "../assets/images/curve/ref/Curve-05.webp";
 import curveRef07 from "../assets/images/curve/ref/Curve-07.webp";
@@ -120,6 +125,10 @@ import skyTreeRefView11 from "../assets/images/sky-tree-tower/ref/view11.webp";
 import skyTreeRefRcam from "../assets/images/sky-tree-tower/ref/rcam4.webp";
 import skyTreeRefTimeline2020 from "../assets/images/sky-tree-tower/ref/timeline-2020.webp";
 import skyTreeRefTimeline2023 from "../assets/images/sky-tree-tower/ref/timeline-2023.webp";
+import skyTreeAmenityArchitecture from "../assets/images/sky-tree-tower/amenities/architecture.webp";
+import skyTreeAmenityRetail from "../assets/images/sky-tree-tower/amenities/retail.webp";
+import skyTreeAmenityDining from "../assets/images/sky-tree-tower/amenities/dining.webp";
+import skyTreeAmenitySecurity from "../assets/images/sky-tree-tower/amenities/security.webp";
 
 export const projectDetails = {
   "royal-atrium-mall": {
@@ -224,6 +233,7 @@ export const projectDetails = {
     // Full overview copy from the reference page
     overview: {
       heading: "All About Bahria Sky 2",
+      image: bahriaSkyOverview,
       paragraphs: [
         "Bahria Sky 2 is the latest project to come up in Bahria Orchard, Lahore. A project that is designed to push boundaries of comfort and style, and also that of modern urban living. Bahria Sky 2 offers you the unique combination of luxury and day-to-day convenience to make it one of the most exciting new developments in the city.",
         "Bahria Sky 2 is a 3 side open building that provides access for the residents and visitors of the building. It provides a smooth entry from both sides of the building. This design dramatically reduces traffic flow and makes it more secure and convenient.",
@@ -455,6 +465,7 @@ export const projectDetails = {
     tagline: "Excellence in Every Foundation",
     status: "In Progress",
     heroImage: curveHero,
+    heroBackground: curveRefGallery6,
     introHeading: "A New Setting for Your Business.",
     description: [
       "Curve is a commercial project by HF Developers on Main Pine Avenue, near Lake City–Ring Road Interchange, Lahore. The project includes retail, showroom, office and dining spaces.",
@@ -515,6 +526,7 @@ export const projectDetails = {
     featureGroups: [
       {
         title: "Architecture & Layout",
+        image: curveAmenityArchitecture,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -530,6 +542,7 @@ export const projectDetails = {
       },
       {
         title: "Smart Infrastructure & Security",
+        image: curveAmenitySecurity,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -550,6 +563,7 @@ export const projectDetails = {
       },
       {
         title: "Dining & Entertainment",
+        image: curveAmenityDining,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -563,6 +577,7 @@ export const projectDetails = {
       },
       {
         title: "Commercial & Retail",
+        image: curveAmenityRetail,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -988,6 +1003,7 @@ export const projectDetails = {
     featureGroups: [
       {
         title: "Architecture & Layout",
+        image: skyTreeAmenityArchitecture,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -1003,6 +1019,7 @@ export const projectDetails = {
       },
       {
         title: "Commercial & Retail",
+        image: skyTreeAmenityRetail,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -1019,6 +1036,7 @@ export const projectDetails = {
       },
       {
         title: "Dining & Entertainment",
+        image: skyTreeAmenityDining,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [
@@ -1032,6 +1050,7 @@ export const projectDetails = {
       },
       {
         title: "Smart Infrastructure & Security",
+        image: skyTreeAmenitySecurity,
         intro:
           "We offer a complete suite of real estate solutions — from development and construction to secure investment and long-term management.",
         items: [

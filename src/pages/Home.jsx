@@ -108,29 +108,6 @@ export default function Home() {
         </div>
         <div className="hero-side-label">LAHORE · PAKISTAN</div>
       </section>
-      <section
-        className="stats-strip"
-        aria-label="Bunyaad Holdings at a glance"
-      >
-        <div className="container stats-grid">
-          <div className="stat-block">
-            <b>04</b>
-            <span>Featured Projects</span>
-          </div>
-          <div className="stat-block">
-            <b>R + C</b>
-            <span>Residential &amp; Commercial</span>
-          </div>
-          <div className="stat-block">
-            <b>S · M · D</b>
-            <span>Sales · Marketing · Development</span>
-          </div>
-          <div className="stat-block">
-            <b>LHR</b>
-            <span>Lahore, Pakistan</span>
-          </div>
-        </div>
-      </section>
       <section className="intro section-pad">
         <div className="container intro-grid">
           <div className="intro-stamp">

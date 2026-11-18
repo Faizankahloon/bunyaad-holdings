@@ -129,7 +129,26 @@ function DevGroups({ groups, name }) {
 function GalleryStrip({ images, alt }) {
   const [idx, setIdx] = useState(0);
   const [anim, setAnim] = useState(true);
-  const STEP = 354; // 340px card + 14px gap
+  const [step, setStep] = useState(0);
+  const stripRef = useRef(null);
+  // Size each slide to exactly 1/3 of the strip so three complete images fill
+  // the viewport and the next slide starts flush with the left edge.
+  useEffect(() => {
+    const strip = stripRef.current;
+    if (!strip) return;
+    const measure = () => {
+      const styles = getComputedStyle(strip);
+      const gap = parseFloat(styles.getPropertyValue("--gallery-gap")) || 0;
+      const cols = parseInt(styles.getPropertyValue("--gallery-cols"), 10) || 3;
+      const card = Math.max(0, (strip.clientWidth - (cols - 1) * gap) / cols);
+      strip.style.setProperty("--gallery-card", `${card}px`);
+      setStep(card + gap);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(strip);
+    return () => ro.disconnect();
+  }, []);
   useEffect(() => {
     const t = setInterval(() => setIdx((v) => v + 1), 2000);
     return () => clearInterval(t);
@@ -146,11 +165,11 @@ function GalleryStrip({ images, alt }) {
     }
   }, [idx, images.length]);
   return (
-    <div className="gallery-strip">
+    <div className="gallery-strip" ref={stripRef}>
       <div
         className="gallery-strip-track"
         style={{
-          transform: `translateX(${-idx * STEP}px)`,
+          transform: `translateX(${-idx * step}px)`,
           transition: anim
             ? "transform 1.1s cubic-bezier(.25,.1,.25,1)"
             : "none",
@@ -194,7 +213,7 @@ export default function ProjectPage({ slug }) {
             <em>{d.tagline}</em>
           </>
         }
-        image={d.heroImage}
+        image={d.heroBackground || d.heroImage}
       />
 
       {/* Banner strip (Royal Atrium) */}
@@ -302,6 +321,14 @@ export default function ProjectPage({ slug }) {
                 <br />
                 <em>{p.name}.</em>
               </h2>
+              {d.overview.image && (
+                <img
+                  className="overview-figure"
+                  src={d.overview.image}
+                  alt={`${p.name} overview`}
+                  loading="lazy"
+                />
+              )}
             </div>
             <div>
               {d.overview.paragraphs.map((t, i) => (
