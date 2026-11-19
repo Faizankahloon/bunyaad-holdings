@@ -8,6 +8,7 @@ import skyTreeTower from "../assets/images/sky-tree-tower/hero.webp";
 
 export const PHONE = "+923215667784";
 export const PHONE_DISPLAY = "03215667784";
+export const EMAIL = "info@bunyaadholdings.com";
 export const WHATSAPP = "https://wa.me/923215667784";
 
 // ── Enquiry destination ────────────────────────────────────────────────

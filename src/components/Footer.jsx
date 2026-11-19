@@ -1,6 +1,21 @@
 import React from "react";
-import { Phone, MapPin, MessageCircle } from "lucide-react";
-import { PHONE, WHATSAPP } from "../data/site.js";
+import {
+  Phone,
+  MapPin,
+  MessageCircle,
+  Mail,
+  Facebook,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
+import { PHONE, PHONE_DISPLAY, EMAIL, WHATSAPP } from "../data/site.js";
+
+// Replace the hrefs with the official Bunyaad Holdings profiles when ready.
+const SOCIALS = [
+  { label: "Facebook", href: "#", Icon: Facebook },
+  { label: "LinkedIn", href: "#", Icon: Linkedin },
+  { label: "Instagram", href: "#", Icon: Instagram },
+];
 
 export default function Footer() {
   return (
@@ -36,7 +51,10 @@ export default function Footer() {
         <div>
           <h4>Contact</h4>
           <a href={`tel:${PHONE}`}>
-            <Phone size={15} /> 03215667784
+            <Phone size={15} /> {PHONE_DISPLAY}
+          </a>
+          <a href={`mailto:${EMAIL}`}>
+            <Mail size={15} /> {EMAIL}
           </a>
           <span>
             <MapPin size={15} /> 630 Block R, Model Town, Lahore
@@ -45,6 +63,21 @@ export default function Footer() {
             <MessageCircle size={15} /> WhatsApp our team
           </a>
         </div>
+      </div>
+
+      <div className="container footer-social">
+        {SOCIALS.map(({ label, href, Icon }) => (
+          <a
+            key={label}
+            href={href}
+            className="footer-social-link"
+            aria-label={label}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel={href.startsWith("http") ? "noreferrer" : undefined}
+          >
+            <Icon size={16} />
+          </a>
+        ))}
       </div>
 
       <div className="container footer-bottom">

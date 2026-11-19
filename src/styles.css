@@ -3666,6 +3666,32 @@ h2 em,
   color: #b9c2ca;
   font-size: 13.5px;
 }
+.footer-social {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 0 16px;
+}
+.footer-social-link {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #b9c2ca;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s,
+    transform 0.3s;
+}
+.footer .footer-social-link:hover {
+  background: #b9985a;
+  border-color: #b9985a;
+  color: #000;
+  transform: translateY(-2px);
+}
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 14px;
@@ -7910,20 +7936,6 @@ textarea[aria-invalid="true"] {
   --dev-card-w: calc((min(1180px, 100vw - 48px) - 32px) / 3);
   margin-top: 44px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 3%,
-    #000 97%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 3%,
-    #000 97%,
-    transparent
-  );
 }
 .dev-gallery-track {
   display: flex;

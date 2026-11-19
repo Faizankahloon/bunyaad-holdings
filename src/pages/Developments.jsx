@@ -9,6 +9,13 @@ import gallery3 from "../assets/images/developments/gallery-3.webp";
 import gallery4 from "../assets/images/developments/gallery-4.webp";
 import gallery5 from "../assets/images/developments/gallery-5.webp";
 import gallery6 from "../assets/images/developments/gallery-6.webp";
+// Unsplash (free license): Islamabad scaffolding — Mudassir Zaheer;
+// Karachi site crew — Jalal Ajmal; tower crane — Adrian Sulyok;
+// Karachi skyline — Muneer Ahmed OK.
+import gallery7 from "../assets/images/developments/gallery-7.webp";
+import gallery8 from "../assets/images/developments/gallery-8.webp";
+import gallery9 from "../assets/images/developments/gallery-9.webp";
+import gallery10 from "../assets/images/developments/gallery-10.webp";
 
 const GALLERY = [
   { src: gallery1, alt: "Construction team fixing steel reinforcement on site", caption: "Reinforcement Works" },
@@ -17,6 +24,10 @@ const GALLERY = [
   { src: gallery4, alt: "Excavation and earthworks at a development site", caption: "Earthworks" },
   { src: gallery5, alt: "Workers assembling steel columns for a new structure", caption: "Steel & Formwork" },
   { src: gallery6, alt: "Site survey and progress review at a construction project", caption: "Site Survey" },
+  { src: gallery7, alt: "Worker on scaffolding in front of a tall building under construction in Islamabad, Pakistan", caption: "Islamabad Scaffolding" },
+  { src: gallery8, alt: "Construction workers building on site in Karachi, Pakistan", caption: "Karachi Site Crew" },
+  { src: gallery9, alt: "Tower crane over a building under construction", caption: "Tower Crane" },
+  { src: gallery10, alt: "Karachi high-rise skyline and urban development in Pakistan", caption: "Karachi Skyline" },
 ];
 
 // Our Developments — kept separate from the four represented projects.
@@ -26,11 +37,11 @@ export default function Developments() {
   const trackRef = useRef(null);
   const [slide, setSlide] = useState(0);
 
-  // Advance one image every 4 seconds. The image set is duplicated, so
+  // Advance one image every 2 seconds. The image set is duplicated, so
   // after the last slide we reset silently and the loop looks continuous.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => setSlide((s) => s + 1), 4000);
+    const id = setInterval(() => setSlide((s) => s + 1), 2000);
     return () => clearInterval(id);
   }, []);
 
